@@ -1,51 +1,39 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { SiteWrapper } from "../style/shared"
+import { GlobalStyle } from "../style/global"
 
-import Header from "./header"
-import "./layout.css"
+import Navigation from "./Navigation"
+import Hero from "./Hero"
+import About from "./About"
+import Projects from "./Projects"
+import Work from "./Work"
+import Contact from "./Contact"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
-  )
-}
+    <SiteWrapper>
+      {children}
+      <GlobalStyle />
+      <Navigation/>
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+      <main>
+        <Hero />
+
+        <About />
+
+        <Projects />
+
+        <Work />
+
+        <Contact />
+
+      </main>
+
+      <footer>
+        © {new Date().getFullYear()}, Sharmin Sultana
+      </footer>
+    </SiteWrapper>
+  )
 }
 
 export default Layout
